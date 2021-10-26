@@ -1,0 +1,25 @@
+
+/**
+ */
+body {
+	margin:  0;
+	padding: 0;
+}
+
+/**
+ */
+div.margin {
+	margin: 0.5em;
+}
+
+/**
+ */
+#canvas {
+	border: 1px solid black;
+}
+
+/**
+ */
+#clear {
+	margin-top: 0.5em;
+}
