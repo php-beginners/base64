@@ -8,7 +8,7 @@
 	<link href="index.css?<?= date('H') ?>" rel="stylesheet" />
 
 	<!-- JavaScript -->
-	<script src="canvas.js?<?= date('H') ?>" defer"></script>
+	<script src="canvas.js?<?= date('H') ?>" defer></script>
 </head>
 <body>
 	<div class="margin">
