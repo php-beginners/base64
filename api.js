@@ -42,3 +42,30 @@ function SaveToServerBase64(){
             console.error("Fetch error:", error);
         });
 }
+
+//  ...
+function SaveToServerBinary(){
+    //  ...
+    let encoder = new TextEncoder();
+    let base64  = document.getElementById('textarea').value;
+//  let binary  = encoder.encode('Hello, World!?');
+    let binary  = encoder.encode(base64);
+
+    //  ...
+    let url     = './api/binary.php';
+//  let binary  = new Uint8Array([0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x57, 0x6f, 0x72, 0x6c, 0x64]);
+    let xhr     = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.responseType = 'arraybuffer';
+    xhr.send(binary);
+    xhr.onreadystatechange = function() {
+        if( xhr.readyState === 4 && xhr.status === 200 ){
+            if( this.responseType === 'arraybuffer' ){
+                response = new TextDecoder().decode(xhr.response);   
+            }else{
+                response = this.responseText;
+            }
+            console.log(response);
+        }
+    };
+}
