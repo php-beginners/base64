@@ -69,3 +69,76 @@ function SaveToServerBinary(){
         }
     };
 }
+
+/** Save to server at Blob
+ *
+ * @created     2023-04-11
+ * @version     1.0
+ * @package     phpbeginners-base64
+ * @author      phpbeginners <phpbeginners@gmail.com>
+ * @copyright   phpbeginners All right reserved.
+ */
+function SaveToServerBlob(){
+    //  ...
+    let base64 = document.getElementById('textarea').value;
+        base64 = base64.replace(/^.*,/, '');
+    let blob   = ConvertToBlog(base64);
+
+    //  ...
+    let formData = new FormData();
+        formData.append("image", blob);
+    let xhr = new XMLHttpRequest();
+        xhr.open("POST", "./api/blob.php");
+        xhr.onload = function(){
+        if( xhr.status === 200 ){
+            console.log(xhr.responseText);
+        }else{
+            console.error("Error:", xhr.statusText);
+        }
+    };
+    xhr.send(formData);
+
+    /*
+    //  ...
+    fetch("./api/blob.php", {
+        method: "POST",
+        body: formData
+    }).then(function(response) {
+        if (response.ok) {
+            return response.text();
+        }else{
+            throw new Error("Error: " + response.statusText);
+        }
+    }).then(function(responseText) {
+        console.log(responseText);
+    }).catch(function(error) {
+        console.error(error);
+    });
+    */
+}
+
+/** Convert to Blob from Base64
+ *
+ * @created     2023-04-10
+ * @version     1.0
+ * @package     phpbeginners-base64
+ * @author      phpbeginners <phpbeginners@gmail.com>
+ * @copyright   phpbeginners All right reserved.
+ */
+function ConvertToBlog(base64){
+    //  ...
+        base64    = base64.replace(/^.*,/, '');
+    let bin       = atob(base64);
+    let buffer    = new Uint8Array(bin.length);
+
+    //  ...
+    for(let i=0; i < bin.length; i++){
+        buffer[i] = bin.charCodeAt(i);
+    }
+
+    //  ...
+    var blob = new Blob([buffer.buffer], { type: 'base64' });
+
+    //  ...
+    return blob;
+}
