@@ -24,9 +24,6 @@
 
         //  ...
         CarbonCopy(base64);
-
-        //  ...
-        console.log( ConvertToBlog(base64) );
     });
 
     //  ...
@@ -40,24 +37,6 @@
             }
             image.src = base64;
         context.drawImage(image, 0, 0, 800, 200);
-    }
-
-    //  ...
-    function ConvertToBlog(base64){
-        //  ...
-        let bin       = atob(base64.replace(/^.*,/, ''));
-        let buffer    = new Uint8Array(bin.length);
-
-        //  ...
-        for (let i    = 0; i < bin.length; i++) {
-            buffer[i] = bin.charCodeAt(i);
-        }
-
-        //  ...
-        var blob = new Blob([buffer.buffer], { type: 'base64' });
-
-        //  ...
-        return blob;
     }
 
     //  ...
