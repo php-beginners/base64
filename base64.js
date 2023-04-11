@@ -20,6 +20,7 @@
         //  ...
         document.getElementById('a').href  = base64;
         document.getElementById('img').src = base64;
+        document.getElementById('textarea').innerText = base64;
 
         //  ...
         CarbonCopy(base64);
@@ -58,4 +59,24 @@
         //  ...
         return blob;
     }
+
+    //  ...
+    document.getElementById('save').addEventListener('click',function(){
+        //  ...
+        let type = document.getElementById('type').value;
+        console.log(type);
+
+        //  ...
+        switch( type ){
+            case 'blob':
+                SaveToServerBlob();
+                break;
+            case 'binary':
+                SaveToServerBinary();
+                break;
+            case 'base64':
+                SaveToServerBase64();
+                break;
+        }
+    });
 })();
